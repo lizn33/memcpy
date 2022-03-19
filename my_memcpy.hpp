@@ -34,8 +34,9 @@ namespace my
             //count为0，则不必花费资源创建多余变量
             if(count)
             {
-                long long int *lli_dest_end = reinterpret_cast<long long int *>(char_dest + size - lli_len);
-                long long int *lli_src_end = reinterpret_cast<long long int *>(char_src + size - lli_len);
+                //寄存器存放指针，加速，效果不明显
+                register long long int *lli_dest_end = reinterpret_cast<long long int *>(char_dest + size - lli_len);
+                register long long int *lli_src_end = reinterpret_cast<long long int *>(char_src + size - lli_len);
                 //可以使用cpu流水线处理思维，一次处理多个，效果不明显，不使用
                 // while(count > 2)
                 // {
@@ -65,8 +66,8 @@ namespace my
             char *char_dest_beg = char_dest;
             if(count)
             {
-                long long int *lli_dest_beg = reinterpret_cast<long long int *>(char_dest);
-                long long int *lli_src_beg = reinterpret_cast<long long int *>(char_src);
+                register long long int *lli_dest_beg = reinterpret_cast<long long int *>(char_dest);
+                register long long int *lli_src_beg = reinterpret_cast<long long int *>(char_src);
                 //可以使用cpu流水线处理思维，一次处理多个，效果不明显，不使用
                 // while(count > 2)
                 // {
